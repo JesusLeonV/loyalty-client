@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fideliza - Elige tu Plan</title>
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #f8fafc; min-height: 100vh; }
+    
+    .hero { background: linear-gradient(135deg, #1e293b, #334155); padding: 40px 20px; text-align: center; }
+    .hero h1 { font-size: 32px; color: white; font-weight: 800; margin-bottom: 8px; }
+    .hero p { color: #94a3b8; font-size: 16px; max-width: 500px; margin: 0 auto; }
+    .hero .badge { display: inline-block; background: #22c55e; color: white; font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 20px; margin-top: 16px; }
+    
+    .annual-toggle { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 24px; }
+    .annual-toggle span { color: #94a3b8; font-size: 14px; }
+    .annual-toggle span.active { color: white; font-weight: 600; }
+    .toggle { position: relative; width: 50px; height: 26px; background: #475569; border-radius: 13px; cursor: pointer; transition: 0.3s; }
+    .toggle.on { background: #22c55e; }
+    .toggle::after { content: ''; position: absolute; width: 22px; height: 22px; background: white; border-radius: 50%; top: 2px; left: 2px; transition: 0.3s; }
+    .toggle.on::after { left: 26px; }
+    
+    .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+    
+    .comparison-table { background: white; border-radius: 16px; padding: 32px; margin-bottom: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); overflow-x: auto; }
+    .comparison-table h2 { font-size: 20px; color: #1e293b; margin-bottom: 20px; text-align: center; }
+    .comparison-table table { width: 100%; border-collapse: collapse; min-width: 700px; }
+    .comparison-table th { padding: 12px 16px; text-align: left; font-size: 13px; color: #64748b; border-bottom: 2px solid #e2e8f0; }
+    .comparison-table th.plan-header { text-align: center; font-size: 16px; color: #1e293b; font-weight: 700; }
+    .comparison-table th.plan-header.popular { color: #3b82f6; }
+    .comparison-table td { padding: 12px 16px; font-size: 14px; color: #475569; border-bottom: 1px solid #f1f5f9; }
+    .comparison-table td:not(:first-child) { text-align: center; }
+    .comparison-table td.featured { background: #eff6ff; }
+    .check { color: #22c55e; font-weight: 700; }
+    .cross { color: #cbd5e1; }
+    
+    .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 40px; }
+    
+    .plan-card { background: white; border-radius: 20px; padding: 32px; border: 2px solid #e2e8f0; transition: all 0.3s; position: relative; display: flex; flex-direction: column; }
+    .plan-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .plan-card.popular { border-color: #3b82f6; background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; }
+    .plan-card.popular .plan-name, .plan-card.popular .plan-desc, .plan-card.popular .price, .plan-card.popular .price-period, .plan-card.popular .feature-text { color: white; }
+    .plan-card.popular .plan-desc { color: #bfdbfe; }
+    
+    .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: #f59e0b; color: #1e293b; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; padding: 6px 20px; border-radius: 20px; }
+    
+    .plan-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 28px; }
+    .plan-card:not(.popular) .plan-icon { background: #f1f5f9; }
+    .plan-card.popular .plan-icon { background: rgba(255,255,255,0.2); }
+    
+    .plan-name { font-size: 22px; font-weight: 800; color: #1e293b; margin-bottom: 4px; }
+    .plan-desc { font-size: 14px; color: #64748b; margin-bottom: 20px; }
+    
+    .price-row { margin-bottom: 24px; }
+    .price { font-size: 42px; font-weight: 900; color: #1e293b; }
+    .price-period { font-size: 14px; color: #94a3b8; font-weight: 400; }
+    .price-note { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+    .plan-card.popular .price-note { color: #bfdbfe; }
+    
+    .features { list-style: none; margin-bottom: 24px; flex: 1; }
+    .features li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; font-size: 14px; }
+    .features li .icon { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; margin-top: 1px; }
+    .plan-card:not(.popular) .features li .icon { background: #dcfce7; color: #16a34a; }
+    .plan-card.popular .features li .icon { background: rgba(255,255,255,0.2); color: white; }
+    .feature-text { color: #475569; line-height: 1.4; }
+    .plan-card.popular .feature-text { color: rgba(255,255,255,0.9); }
+    
+    .btn { display: block; width: 100%; padding: 16px; border-radius: 14px; font-size: 16px; font-weight: 700; border: none; cursor: pointer; transition: all 0.2s; text-align: center; }
+    .btn-primary { background: #1e293b; color: white; }
+    .btn-primary:hover { background: #334155; transform: scale(1.02); }
+    .btn-popular { background: white; color: #1d4ed8; }
+    .btn-popular:hover { background: #f0f9ff; transform: scale(1.02); }
+    .btn-outline { background: transparent; color: #1e293b; border: 2px solid #e2e8f0; }
+    .btn-outline:hover { border-color: #1e293b; }
+    
+    .savings { display: inline-block; background: #dcfce7; color: #16a34a; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 8px; margin-top: 8px; }
+    .plan-card.popular .savings { background: rgba(255,255,255,0.2); color: white; }
+    
+    .guarantee { text-align: center; margin-top: 40px; padding: 32px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    .guarantee h3 { font-size: 18px; color: #1e293b; margin-bottom: 8px; }
+    .guarantee p { color: #64748b; font-size: 14px; }
+    .guarantee-badges { display: flex; justify-content: center; gap: 24px; margin-top: 16px; flex-wrap: wrap; }
+    .guarantee-badge { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #475569; }
+    .guarantee-badge .icon { width: 32px; height: 32px; background: #f0fdf4; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    
+    .faq { margin-top: 40px; }
+    .faq h2 { font-size: 22px; color: #1e293b; text-align: center; margin-bottom: 24px; }
+    .faq-item { background: white; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
+    .faq-item h4 { font-size: 15px; color: #1e293b; margin-bottom: 8px; }
+    .faq-item p { font-size: 14px; color: #64748b; line-height: 1.6; }
+    
+    .loading { display: none; }
+    .loading.show { display: block; }
+    .spinner { width: 24px; height: 24px; border: 3px solid #e2e8f0; border-top-color: #3b82f6; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    
+    .back { display: inline-flex; align-items: center; gap: 6px; color: #94a3b8; text-decoration: none; font-size: 14px; margin-bottom: 16px; padding: 8px 0; }
+    .back:hover { color: white; }
+    
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 24px; }
+      .price { font-size: 36px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <a href="/app/" class="back">← Volver a Fideliza</a>
+    <h1>Elige el plan perfecto para tu negocio</h1>
+    <p>Empieza con 14 días gratis. Sin tarjeta de crédito. Cancela cuando quieras.</p>
+    <div class="badge">🔥 30% OFF lanzamiento — solo quedan 47 cupos</div>
+    
+    <div class="annual-toggle">
+      <span id="monthly-label" class="active">Mensual</span>
+      <div class="toggle" id="billing-toggle" onclick="toggleBilling()"></div>
+      <span id="annual-label">Anual <span style="color:#22c55e;font-weight:700">-2 meses gratis</span></span>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="plans-grid">
+      <!-- Free -->
+      <div class="plan-card" style="border-color:#e5e7eb;">
+        <div class="plan-icon" style="background:#f3f4f6;">🎁</div>
+        <div class="plan-name">Gratuito</div>
+        <div class="plan-desc">Para negocios pequeños que empiezan.</div>
+        <div class="price-row">
+          <div class="price" style="color:#6b7280;">$0</div>
+          <div class="price-period">/siempre</div>
+        </div>
+        <ul class="features">
+          <li><span class="icon">✓</span><span class="feature-text">Hasta 50 clientes</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">1 tarjeta de fidelidad</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Sistema de puntos básico</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">QR para clientes</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Reportes básicos</span></li>
+          <li><span class="icon" style="background:#fee2e2;color:#dc2626;">✗</span><span class="feature-text" style="color:#9ca3af;">Incluye anuncios publicitarios</span></li>
+          <li><span class="icon" style="background:#fee2e2;color:#dc2626;">✗</span><span class="feature-text" style="color:#9ca3af;">Tarjetas de sellos</span></li>
+          <li><span class="icon" style="background:#fee2e2;color:#dc2626;">✗</span><span class="feature-text" style="color:#9ca3af;">WhatsApp automático</span></li>
+        </ul>
+        <button class="btn btn-outline" onclick="selectPlan('free')" style="border:2px solid #e5e7eb;color:#374151;">Empezar gratis</button>
+      </div>
+
+      <!-- Starter -->
+      <div class="plan-card">
+        <div class="plan-icon">🚀</div>
+        <div class="plan-name">Starter</div>
+        <div class="plan-desc">Para negocios que empiezan a fidelizar.</div>
+        <div class="price-row">
+          <div class="price" id="price-starter">$29.900</div>
+          <div class="price-period">/mes</div>
+          <div class="price-note" id="note-starter"></div>
+          <div class="savings" id="savings-starter" style="display:none">Ahorras $59.800 al año</div>
+        </div>
+        <ul class="features">
+          <li><span class="icon">✓</span><span class="feature-text">Hasta 500 clientes</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">5 tarjetas digitales personalizadas</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Sistema de puntos y canjes</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Tarjetas de sellos</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">QR y escáner integrado</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Diseño personalizado de tarjetas</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Reportes de ventas y clientes</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">1 ubicación física</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Link de WhatsApp personalizado</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Soporte por email (48h)</span></li>
+          <li><span class="icon" style="background:#dcfce7;color:#16a34a;">✓</span><span class="feature-text" style="color:#16a34a;font-weight:600;">Sin anuncios</span></li>
+        </ul>
+        <button class="btn btn-primary" onclick="selectPlan('starter')">Comenzar gratis</button>
+      </div>
+      
+      <!-- Professional -->
+      <div class="plan-card popular">
+        <div class="popular-badge">⭐ Más elegido</div>
+        <div class="plan-icon">💎</div>
+        <div class="plan-name">Professional</div>
+        <div class="plan-desc">Para negocios que quieren crecer rápido.</div>
+        <div class="price-row">
+          <div class="price" id="price-pro">$59.900</div>
+          <div class="price-period">/mes</div>
+          <div class="price-note" id="note-pro"></div>
+          <div class="savings" id="savings-pro" style="display:none">Ahorras $119.800 al año</div>
+        </div>
+        <ul class="features">
+          <li><span class="icon">✓</span><span class="feature-text">Hasta 5.000 clientes</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Todo del Starter incluido</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Dashboard avanzado con gráficos</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Tarjetas de sellos (tipo Starbucks)</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Escáner QR integrado</span></li>
+          <li><span class="icon">✓</span><span class="feature-text"><b>WhatsApp Business automático</b></span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Campañas de re-activación</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Plantillas de diseño premium</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">2 ubicaciones incluidas</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Soporte prioritario (4h)</span></li>
+        </ul>
+        <button class="btn btn-popular" onclick="selectPlan('professional')">Comenzar gratis</button>
+      </div>
+      
+      <!-- Enterprise -->
+      <div class="plan-card">
+        <div class="plan-icon">🏢</div>
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-desc">Para franquicias y grandes empresas.</div>
+        <div class="price-row">
+          <div class="price" id="price-ent">$99.900</div>
+          <div class="price-period">/mes</div>
+          <div class="price-note" id="note-ent"></div>
+          <div class="savings" id="savings-ent" style="display:none">Ahorras $199.800 al año</div>
+        </div>
+        <ul class="features">
+          <li><span class="icon">✓</span><span class="feature-text">Clientes ilimitados</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Todo del Professional incluido</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">API completa para tu tienda</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Multi-sucursal ilimitado</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Integración con caja (POS)</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Webhook personalizado</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Reportes financieros (ROI, LTV)</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Modo blanco (tu marca)</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Gerente dedicado mensual</span></li>
+          <li><span class="icon">✓</span><span class="feature-text">Setup personalizado + capacitación</span></li>
+        </ul>
+        <button class="btn btn-primary" onclick="selectPlan('enterprise')">Comenzar gratis</button>
+      </div>
+    </div>
+
+    <!-- Tabla comparativa -->
+    <div class="comparison-table">
+      <h2>Comparación detallada de planes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="plan-header">Starter</th>
+            <th class="plan-header popular">Professional</th>
+            <th class="plan-header">Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Clientes</td><td>500</td><td class="featured">5.000</td><td>Ilimitados</td></tr>
+          <tr><td>Ubicaciones</td><td>1</td><td class="featured">2</td><td>Ilimitadas</td></tr>
+          <tr><td>Tarjetas digitales</td><td class="check">✓</td><td class="featured check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Sistema de puntos</td><td class="check">✓</td><td class="featured check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Tarjetas de sellos</td><td class="cross">—</td><td class="featured check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Escáner QR</td><td class="cross">—</td><td class="featured check">✓</td><td class="check">✓</td></tr>
+          <tr><td>WhatsApp automático</td><td class="cross">—</td><td class="featured check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Campañas re-activación</td><td class="cross">—</td><td class="featured check">✓</td><td class="check">✓</td></tr>
+          <tr><td>Dashboard avanzado</td><td class="cross">—</td><td class="featured check">✓</td><td class="check">✓</td></tr>
+          <tr><td>API completa</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td></tr>
+          <tr><td>Integración POS</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td></tr>
+          <tr><td>Multi-sucursal</td><td class="cross">—</td><td class="featured">2</td><td class="check">✓</td></tr>
+          <tr><td>Reportes financieros</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td></tr>
+          <tr><td>Modo blanco</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td></tr>
+          <tr><td>Gerente dedicado</td><td class="cross">—</td><td class="cross">—</td><td class="check">✓</td></tr>
+          <tr><td>Soporte</td><td>Email (48h)</td><td class="featured">Prioritario (4h)</td><td>Dedicado</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Garantías -->
+    <div class="guarantee">
+      <h3>Garantía de satisfacción 100%</h3>
+      <p>Si no estás satisfecho en los primeros 30 días, te devolvemos tu dinero. Sin preguntas.</p>
+      <div class="guarantee-badges">
+        <div class="guarantee-badge"><div class="icon">🔒</div>Pago seguro MercadoPago</div>
+        <div class="guarantee-badge"><div class="icon">💳</div>Sin tarjeta de crédito</div>
+        <div class="guarantee-badge"><div class="icon">📅</div>14 días gratis</div>
+        <div class="guarantee-badge"><div class="icon">↩️</div>Cancela cuando quieras</div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq">
+      <h2>Preguntas frecuentes</h2>
+      <div class="faq-item">
+        <h4>¿Qué pasa después de los 14 días gratis?</h4>
+        <p>Automáticamente se activa tu plan seleccionado. Puedes cancelar antes de que termine el periodo de prueba sin ningún costo.</p>
+      </div>
+      <div class="faq-item">
+        <h4>¿Puedo cambiar de plan después?</h4>
+        <p>Sí, puedes subir o bajar de plan en cualquier momento. Los cambios se aplican inmediatamente y se ajusta la diferencia de precio.</p>
+      </div>
+      <div class="faq-item">
+        <h4>¿Qué métodos de pago aceptan?</h4>
+        <p>Tarjeta de crédito, débito, transferencia bancaria, Webpay, y otros métodos disponibles en MercadoPago Chile.</p>
+      </div>
+      <div class="faq-item">
+        <h4>¿Necesito conocimientos técnicos?</h4>
+        <p>No. Fideliza está diseñado para que cualquier persona pueda configurar su programa de fidelidad en menos de 5 minutos.</p>
+      </div>
+      <div class="faq-item">
+        <h4>¿Qué es el WhatsApp automático?</h4>
+        <p>Cuando un cliente acumula puntos o canjea una recompensa, recibe un mensaje automático por WhatsApp confirmando la acción. Sin que tengas que hacer nada.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="loading-overlay" class="loading" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:9999;display:none;align-items:center;justify-content:center;">
+    <div style="background:white;padding:40px;border-radius:16px;text-align:center;">
+      <div class="spinner"></div>
+      <p style="margin-top:16px;color:#64748b;">Redirigiendo a MercadoPago...</p>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'https://fidelizacion.cloudsolutions.cl/api';
+    const TOKEN = localStorage.getItem('token');
+    let isAnnual = false;
+
+    const PRICES = {
+      starter: { monthly: 29900, annual: 23900 },
+      professional: { monthly: 59900, annual: 47900 },
+      enterprise: { monthly: 99900, annual: 79900 }
+    };
+
+    function toggleBilling() {
+      isAnnual = !isAnnual;
+      document.getElementById('billing-toggle').classList.toggle('on', isAnnual);
+      document.getElementById('monthly-label').classList.toggle('active', !isAnnual);
+      document.getElementById('annual-label').classList.toggle('active', isAnnual);
+      
+      updatePrices();
+    }
+
+    function updatePrices() {
+      const period = isAnnual ? 'annual' : 'monthly';
+      const suffix = isAnnual ? '/mes (facturado anual)' : '/mes';
+      
+      Object.keys(PRICES).forEach(plan => {
+        const el = document.getElementById(`price-${plan === 'professional' ? 'pro' : plan === 'enterprise' ? 'ent' : 'starter'}`);
+        const note = document.getElementById(`note-${plan === 'professional' ? 'pro' : plan === 'enterprise' ? 'ent' : 'starter'}`);
+        const savings = document.getElementById(`savings-${plan === 'professional' ? 'pro' : plan === 'enterprise' ? 'ent' : 'starter'}`);
+        
+        el.textContent = '$' + PRICES[plan][period].toLocaleString('es-CL');
+        note.textContent = isAnnual ? `Facturado $${(PRICES[plan][period] * 12).toLocaleString('es-CL')} al año` : '';
+        savings.style.display = isAnnual ? 'inline-block' : 'none';
+      });
+    }
+
+    async function selectPlan(planId) {
+      if (planId === 'enterprise') {
+        window.location.href = 'mailto:ventas@fideliza.cl?subject=Plan%20Enterprise%20-%20Consulta';
+        return;
+      }
+
+      if (planId === 'free') {
+        if (!TOKEN) {
+          window.location.href = '/app/login';
+        } else {
+          window.location.href = '/app/business/dashboard';
+        }
+        return;
+      }
+
+      if (!TOKEN) {
+        window.location.href = '/app/login';
+        return;
+      }
+
+      const overlay = document.getElementById('loading-overlay');
+      overlay.style.display = 'flex';
+
+      try {
+        const response = await fetch(`${API_URL}/payments/create-preference`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${TOKEN}`
+          },
+          body: JSON.stringify({ plan_id: planId, billing: isAnnual ? 'annual' : 'monthly' })
+        });
+
+        const data = await response.json();
+
+        if (data.init_point) {
+          window.location.href = data.init_point;
+        } else if (data.sandbox_init_point) {
+          window.location.href = data.sandbox_init_point;
+        } else {
+          throw new Error(data.error || 'Error creando preferencia');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Error al procesar el pago. Por favor, intenta novamente.');
+        overlay.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>

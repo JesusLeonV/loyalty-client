@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fideliza - Tarjetas de Fidelidad | Programa de Fidelización con Puntos</title>
+<meta name="description" content="Fideliza - Programas de fidelidad que funcionan. Gana puntos al visitar tus tiendas favoritas. Canjea recompensas reales. Simple, automático y cerca de ti." />
+<meta name="keywords" content="tarjeta fidelización chile, programa de puntos, membresías digitales, clientes frecuentes" />
+<link rel="canonical" href="https://fidelizacion.cloudsolutions.cl/" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://fidelizacion.cloudsolutions.cl/" />
+<meta property="og:title" content="Fideliza - Programas de fidelidad que funcionan" />
+<meta property="og:description" content="Gana puntos al visitar tus tiendas favoritas. Canjea recompensas reales. Simple, automático y cerca de ti." />
+<meta property="og:image" content="https://fidelizacion.cloudsolutions.cl/favicon.svg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Fideliza - Programas de fidelidad que funcionan" />
+<meta name="twitter:description" content="Gana puntos al visitar tus tiendas favoritas. Canjea recompensas reales." />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:#1f2937;background:#fff;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:16px 24px;transition:all .3s}
+.nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.nav-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;color:#111827}
+.nav-logo-icon{width:36px;height:36px;border-radius:10px;background:#2563eb;display:flex;align-items:center;justify-content:center}
+.nav-links{display:flex;gap:4px}
+.nav-links a{padding:8px 14px;font-size:14px;font-weight:500;color:#6b7280;border-radius:8px;transition:all .2s}
+.nav-links a:hover{color:#2563eb;background:#eff6ff}
+.nav-btns{display:flex;gap:10px;align-items:center}
+.btn-outline{padding:8px 20px;font-size:14px;font-weight:600;color:#374151;border:1px solid #e5e7eb;border-radius:10px;background:#fff;cursor:pointer;transition:all .2s}
+.btn-outline:hover{border-color:#d1d5db;background:#f9fafb}
+.btn-primary{padding:8px 20px;font-size:14px;font-weight:600;color:#fff;background:#2563eb;border:none;border-radius:10px;cursor:pointer;transition:all .2s}
+.btn-primary:hover{background:#1d4ed8}
+.btn-primary-lg{padding:14px 28px;font-size:15px;font-weight:600;color:#fff;background:#2563eb;border:none;border-radius:12px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary-lg:hover{background:#1d4ed8;box-shadow:0 8px 24px rgba(37,99,235,.25)}
+.btn-outline-lg{padding:14px 28px;font-size:15px;font-weight:600;color:#374151;border:1.5px solid #e5e7eb;background:#fff;border-radius:12px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-outline-lg:hover{border-color:#d1d5db;background:#f9fafb}
+
+.hero{padding:140px 24px 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(37,99,235,.06) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(6,182,212,.05) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:#eff6ff;border:1px solid #dbeafe;border-radius:999px;margin-bottom:24px}
+.hero-badge-dot{width:6px;height:6px;background:#2563eb;border-radius:50%;animation:pulse 2s infinite}
+.hero-badge-text{font-size:13px;font-weight:600;color:#2563eb}
+@keyframes pulse{50%{opacity:.5}}
+.hero h1{font-size:52px;font-weight:800;line-height:1.08;letter-spacing:-.03em;color:#111827;margin-bottom:20px}
+.hero h1 span{color:#2563eb}
+.hero-desc{font-size:18px;line-height:1.7;color:#6b7280;max-width:520px;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;margin-bottom:40px}
+.hero-stats{display:flex;align-items:center;gap:20px}
+.hero-avatars{display:flex}
+.hero-avatars div{width:32px;height:32px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;margin-left:-8px}
+.hero-avatars div:first-child{margin-left:0}
+.hero-stat{font-size:13px}
+.hero-stat strong{display:block;font-weight:700;color:#111827}
+.hero-stat span{color:#9ca3af}
+.hero-divider{width:1px;height:32px;background:#e5e7eb}
+
+.phone-card{position:relative;width:300px;margin:0 auto}
+.phone-mockup{background:#fff;border-radius:24px;box-shadow:0 25px 60px -12px rgba(0,0,0,.12),0 0 0 1px rgba(0,0,0,.04);padding:24px;position:relative;z-index:2}
+.phone-header{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.phone-icon{width:44px;height:44px;border-radius:12px;background:#2563eb;display:flex;align-items:center;justify-content:center}
+.phone-title{font-weight:700;font-size:14px;color:#111827}
+.phone-subtitle{font-size:12px;color:#9ca3af}
+.phone-points{background:#f9fafb;border-radius:16px;padding:16px;margin-bottom:16px}
+.phone-points-label{font-size:12px;color:#9ca3af;display:flex;justify-content:space-between}
+.phone-points-value{font-size:32px;font-weight:800;color:#111827;margin:4px 0}
+.phone-points-bar{height:6px;background:#e5e7eb;border-radius:3px;overflow:hidden;margin-top:8px}
+.phone-points-fill{height:100%;width:75%;background:#2563eb;border-radius:3px}
+.phone-points-meta{display:flex;justify-content:space-between;font-size:10px;color:#9ca3af;margin-top:4px}
+.phone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.phone-grid-item{background:#f9fafb;border:1px solid #f3f4f6;border-radius:12px;padding:10px;text-align:center}
+.phone-grid-item span{font-size:20px;display:block}
+.phone-grid-item small{font-size:11px;color:#6b7280;display:block;margin-top:2px}
+.phone-grid-item strong{font-size:11px;color:#22c55e;display:block}
+.phone-list-item{display:flex;align-items:center;gap:10px;padding:8px;background:#f9fafb;border:1px solid #f3f4f6;border-radius:12px;margin-bottom:6px}
+.phone-list-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.phone-list-text{flex:1;min-width:0}
+.phone-list-text strong{font-size:12px;color:#111827;display:block}
+.phone-list-text small{font-size:10px;color:#9ca3af}
+.phone-list-pts{font-size:12px;font-weight:700}
+.phone-badge{position:absolute;width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 8px 24px rgba(0,0,0,.1);z-index:3}
+
+.section{padding:80px 24px}
+.section-gray{background:#f9fafb;border-top:1px solid #f3f4f6}
+.section-blue{background:#2563eb;color:#fff}
+.section-inner{max-width:1120px;margin:0 auto}
+.section-header{text-align:center;max-width:600px;margin:0 auto 56px}
+.section-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:600;margin-bottom:16px;border:1px solid}
+.section-badge-blue{background:#eff6ff;color:#2563eb;border-color:#dbeafe}
+.section-badge-cyan{background:#ecfeff;color:#0891b2;border-color:#cffafe}
+.section-badge-amber{background:#fffbeb;color:#d97706;border-color:#fef3c7}
+.section-header h2{font-size:36px;font-weight:800;letter-spacing:-.02em;color:#111827;line-height:1.15}
+.section-header h2 span{color:#2563eb}
+.section-header p{font-size:16px;color:#6b7280;line-height:1.7;margin-top:16px}
+
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feature-card{background:#fff;border:1px solid #f3f4f6;border-radius:16px;padding:28px;transition:all .3s ease}
+.feature-card:hover{box-shadow:0 12px 32px -8px rgba(0,0,0,.08);transform:translateY(-2px);border-color:#e5e7eb}
+.feature-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
+.feature-card h3{font-size:16px;font-weight:700;color:#111827;margin-bottom:8px}
+.feature-card p{font-size:14px;color:#6b7280;line-height:1.6}
+
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.step{text-align:center;position:relative}
+.step-num{font-size:56px;font-weight:800;color:#f3f4f6;position:absolute;top:-16px;left:50%;transform:translateX(-50%);z-index:0}
+.step-content{position:relative;z-index:1}
+.step-icon{width:64px;height:64px;border-radius:16px;background:#eff6ff;border:1px solid #dbeafe;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 16px}
+.step h3{font-size:16px;font-weight:700;color:#111827;margin-bottom:6px}
+.step p{font-size:14px;color:#6b7280;line-height:1.6;max-width:240px;margin:0 auto}
+
+.biz-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.biz-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
+.biz-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:12px;transition:background .2s}
+.biz-item:hover{background:rgba(255,255,255,.6)}
+.biz-item-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.biz-item strong{font-size:14px;font-weight:700;color:#111827;display:block}
+.biz-item small{font-size:12px;color:#6b7280;line-height:1.5}
+.biz-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:12px}
+
+.dashboard{background:#fff;border-radius:20px;box-shadow:0 20px 50px -12px rgba(0,0,0,.08),0 0 0 1px rgba(0,0,0,.04);padding:24px}
+.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.dash-header strong{font-size:14px;color:#111827}
+.dash-header small{font-size:12px;color:#9ca3af}
+.dash-dots{display:flex;gap:5px}
+.dash-dots span{width:10px;height:10px;border-radius:50%}
+.dash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.dash-stat{background:#f9fafb;border:1px solid #f3f4f6;border-radius:12px;padding:14px}
+.dash-stat small{font-size:11px;color:#9ca3af;display:block}
+.dash-stat strong{font-size:20px;font-weight:700;color:#111827;display:block;margin:2px 0}
+.dash-stat em{font-size:11px;font-weight:600;color:#22c55e;font-style:normal}
+.dash-chart{background:#f9fafb;border:1px solid #f3f4f6;border-radius:12px;padding:16px}
+.dash-chart-header{display:flex;justify-content:space-between;margin-bottom:12px}
+.dash-chart-header span{font-size:12px;color:#6b7280}
+.dash-bars{display:flex;align-items:flex-end;gap:6px;height:100px}
+.dash-bar{flex:1;border-radius:3px 3px 0 0;transition:height .3s}
+.dash-bar-label{font-size:9px;color:#9ca3af;text-align:center;margin-top:4px}
+.dash-bottom{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.dash-bottom-item{background:#f9fafb;border:1px solid #f3f4f6;border-radius:12px;padding:12px;display:flex;align-items:center;gap:10px}
+.dash-bottom-item span{font-size:20px}
+.dash-bottom-item strong{font-size:12px;font-weight:600;color:#111827;display:block}
+.dash-bottom-item small{font-size:10px;color:#9ca3af}
+
+.cli-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.cli-features{margin-top:32px}
+.cli-feature{display:flex;align-items:flex-start;gap:14px;padding:12px;border-radius:12px;transition:background .2s}
+.cli-feature:hover{background:#f9fafb}
+.cli-feature-icon{width:40px;height:40px;border-radius:10px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.cli-feature strong{font-size:14px;font-weight:700;color:#111827;display:block}
+.cli-feature small{font-size:12px;color:#6b7280}
+.cli-store-badges{display:flex;gap:10px;margin-top:28px}
+.cli-store-badge{display:flex;align-items:center;gap:12px;padding:12px 18px;background:#111827;border-radius:12px;color:#fff;transition:background .2s}
+.cli-store-badge:hover{background:#1f2937}
+.cli-store-badge small{font-size:9px;color:#9ca3af;display:block;text-transform:uppercase;letter-spacing:.5px}
+.cli-store-badge strong{font-size:13px;font-weight:600}
+
+.cli-app{background:#f9fafb;border:1px solid #e5e7eb;border-radius:20px;padding:24px}
+.cli-app .phone-points{background:#2563eb;border-radius:16px;padding:20px;color:#fff;margin-bottom:20px}
+.cli-app .phone-points-label{color:#93c5fd}
+.cli-app .phone-points-value{color:#fff}
+.cli-app .phone-points-bar{background:rgba(255,255,255,.2)}
+.cli-app .phone-points-fill{background:#fff}
+.cli-app .phone-points-meta{color:#93c5fd}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:960px;margin:0 auto}
+.pricing-card{border-radius:20px;padding:28px;border:2px solid #f3f4f6;background:#fff;transition:all .3s}
+.pricing-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px -8px rgba(0,0,0,.08)}
+.pricing-card.featured{background:#2563eb;border-color:#2563eb;color:#fff;box-shadow:0 16px 40px -8px rgba(37,99,235,.3)}
+.pricing-card.featured *{color:#fff}
+.pricing-card .pricing-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#93c5fd;margin-bottom:8px}
+.pricing-card h3{font-size:18px;font-weight:700}
+.pricing-card .pricing-desc{font-size:13px;color:#6b7280;margin-top:4px}
+.pricing-card.featured .pricing-desc{color:#bfdbfe}
+.pricing-card .pricing-amount{margin-top:16px}
+.pricing-card .pricing-amount span{font-size:32px;font-weight:800}
+.pricing-card .pricing-amount small{font-size:14px;color:#9ca3af}
+.pricing-card.featured .pricing-amount small{color:#93c5fd}
+.pricing-card ul{margin-top:24px;list-style:none}
+.pricing-card li{padding:8px 0;font-size:14px;color:#4b5563;display:flex;align-items:center;gap:10px}
+.pricing-card.featured li{color:#dbeafe}
+.pricing-card li svg{width:16px;height:16px;flex-shrink:0}
+.pricing-card .pricing-btn{width:100%;margin-top:24px;padding:12px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;border:none}
+.pricing-card .pricing-btn-dark{background:#111827;color:#fff}
+.pricing-card .pricing-btn-dark:hover{background:#1f2937}
+.pricing-card .pricing-btn-white{background:#fff;color:#2563eb}
+.pricing-card .pricing-btn-white:hover{background:#f0f9ff}
+.pricing-card .pricing-btn-outline{background:transparent;color:#374151;border:1px solid #e5e7eb}
+
+.cta-section{padding:80px 24px;text-align:center}
+.cta-section h2{font-size:36px;font-weight:800;color:#fff;letter-spacing:-.02em}
+.cta-section h2 span{color:#bfdbfe}
+.cta-section p{font-size:18px;color:#93c5fd;margin-top:16px;margin-bottom:32px}
+.cta-btns{display:flex;gap:12px;justify-content:center}
+.cta-btn-white{padding:14px 32px;background:#fff;color:#2563eb;font-weight:600;border:none;border-radius:12px;cursor:pointer;font-size:15px;transition:all .2s}
+.cta-btn-white:hover{background:#f0f9ff}
+.cta-btn-light{padding:14px 32px;background:#1d4ed8;color:#fff;font-weight:600;border:1px solid #3b82f6;border-radius:12px;cursor:pointer;font-size:15px;transition:all .2s}
+.cta-btn-light:hover{background:#1e40af}
+
+.footer{background:#111827;padding:56px 24px}
+.footer-inner{max-width:1120px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.footer-brand p{font-size:13px;color:#6b7280;line-height:1.6;margin-top:12px}
+.footer-col h4{font-size:14px;font-weight:700;color:#fff;margin-bottom:12px}
+.footer-col a{display:block;font-size:13px;color:#6b7280;padding:4px 0;transition:color .2s}
+.footer-col a:hover{color:#d1d5db}
+.footer-bottom{border-top:1px solid #1f2937;padding-top:24px;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom span{font-size:12px;color:#4b5563}
+.footer-bottom-links{display:flex;gap:16px}
+.footer-bottom-links a{font-size:12px;color:#4b5563;transition:color .2s}
+.footer-bottom-links a:hover{color:#9ca3af}
+
+.app-btns{display:flex;gap:12px;margin-top:28px}
+.app-badge{display:flex;align-items:center;gap:12px;padding:14px 20px;background:#111827;border-radius:12px;color:#fff;transition:background .2s;cursor:pointer}
+.app-badge:hover{background:#1f2937}
+.app-badge svg{width:24px;height:24px}
+.app-badge small{font-size:9px;color:#9ca3af;display:block;text-transform:uppercase;letter-spacing:.5px}
+.app-badge strong{font-size:13px;font-weight:600}
+
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.testimonial-card{background:#fff;border:1px solid #f3f4f6;border-radius:16px;padding:28px;transition:all .3s ease}
+.testimonial-card:hover{box-shadow:0 12px 32px -8px rgba(0,0,0,.08);transform:translateY(-2px)}
+.testimonial-stars{color:#f59e0b;font-size:14px;margin-bottom:12px;letter-spacing:2px}
+.testimonial-text{font-size:14px;color:#4b5563;line-height:1.7;margin-bottom:16px;font-style:italic}
+.testimonial-author{display:flex;align-items:center;gap:12px}
+.testimonial-avatar{width:40px;height:40px;border-radius:50%;background:#2563eb;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px}
+.testimonial-name{font-size:14px;font-weight:600;color:#111827}
+.testimonial-role{font-size:12px;color:#9ca3af}
+
+.faq-list{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid #e5e7eb}
+.faq-question{width:100%;padding:20px 0;background:none;border:none;text-align:left;font-size:16px;font-weight:600;color:#111827;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit}
+.faq-question:hover{color:#2563eb}
+.faq-answer{padding:0 0 20px;font-size:14px;color:#6b7280;line-height:1.7}
+
+@media(max-width:1024px){.hero-inner,.biz-grid,.cli-grid{grid-template-columns:1fr}.features-grid,.pricing-grid{grid-template-columns:1fr}.steps-grid{grid-template-columns:repeat(2,1fr)}.phone-card{margin-top:40px}.nav-links,.nav-btns{display:none}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.hero h1{font-size:36px}.section-header h2{font-size:28px}.steps-grid{grid-template-columns:1fr}.biz-list{grid-template-columns:1fr}.cli-store-badges{flex-direction:column}.cta-btns{flex-direction:column;align-items:center}.footer-grid{grid-template-columns:1fr}.footer-bottom{flex-direction:column;gap:12px;text-align:center}}
+</style>
+<style class="loyalty-mobile-fix">
+@media(max-width:640px){
+  .hero h1{font-size:28px!important;line-height:1.2!important}
+  .hero p{font-size:15px!important}
+  .section-header h2{font-size:24px!important}
+  .features-grid,.pricing-grid,.biz-grid,.cli-grid{grid-template-columns:1fr!important}
+  .steps-grid{grid-template-columns:1fr!important}
+  .biz-list{grid-template-columns:1fr!important}
+  .cli-store-badges{flex-direction:column!important}
+  .cta-btns{flex-direction:column!important;align-items:stretch!important}
+  .cta-btns a,.cta-btns button{width:100%!important;text-align:center!important;justify-content:center!important}
+  .footer-grid{grid-template-columns:1fr!important}
+  .footer-bottom{flex-direction:column!important;gap:12px!important;text-align:center!important}
+  .nav-links,.nav-btns{display:none!important}
+  .nav{padding:12px 16px!important}
+  .hero-inner{grid-template-columns:1fr!important}
+  .phone-card{display:none!important}
+  .feature-card{padding:20px!important}
+  .pricing-card{padding:20px!important}
+  .container{padding:0 16px!important}
+  .section{padding:40px 0!important}
+}
+@media(max-width:480px){
+  .hero h1{font-size:24px!important}
+  .hero p{font-size:14px!important}
+  .section{padding:32px 0!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+<div class="nav-inner">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+    </div>
+    Fideliza
+  </a>
+  <div class="nav-links">
+    <a href="#inicio">Inicio</a>
+    <a href="#features">Features</a>
+    <a href="#negocio">Negocio</a>
+    <a href="#clientes">Clientes</a>
+    <a href="#precios">Precios</a>
+  </div>
+  <div class="nav-btns">
+    <a href="/app/login" class="btn-outline">Negocio</a>
+    <a href="/app/client/login" class="btn-primary">Cliente</a>
+  </div>
+</div>
+</nav>
+
+<section class="hero" id="inicio">
+<div class="hero-inner">
+  <div>
+    <h1>Programas de fidelidad <span>que funcionan</span></h1>
+    <p class="hero-desc">Gana puntos al visitar tus tiendas favoritas. Canjea recompensas reales. Simple, automático y cerca de ti.</p>
+    <div class="hero-btns">
+      <a href="/app/register" class="btn-primary-lg">Soy negocio <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+      <a href="/app/client/login" class="btn-outline-lg">Soy cliente <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+    </div>
+  </div>
+  <div class="phone-card">
+    <div class="phone-mockup">
+      <div class="phone-header">
+        <div class="phone-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+        </div>
+        <div><div class="phone-title">Mi Tarjeta</div><div class="phone-subtitle">Miembro #FK-2847</div></div>
+      </div>
+      <div class="phone-points">
+        <div class="phone-points-label"><span>Puntos disponibles</span><span style="color:#22c55e;font-weight:600">+120 hoy</span></div>
+        <div class="phone-points-value">4,750</div>
+        <div class="phone-points-bar"><div class="phone-points-fill"></div></div>
+        <div class="phone-points-meta"><span>0</span><span>Meta: 6,000</span></div>
+      </div>
+      <div class="phone-grid">
+        <div class="phone-grid-item"><span>☕</span><small>Cafe</small><strong>+25</strong></div>
+        <div class="phone-grid-item"><span>🛒</span><small>Super</small><strong>+50</strong></div>
+        <div class="phone-grid-item"><span>🍽️</span><small>Resto</small><strong>+40</strong></div>
+      </div>
+      <div class="phone-list-item">
+        <div class="phone-list-icon" style="background:#dcfce7;color:#16a34a">✓</div>
+        <div class="phone-list-text"><strong>Cafe Central</strong><small>Hace 2 horas</small></div>
+        <div class="phone-list-pts" style="color:#22c55e">+25 pts</div>
+      </div>
+      <div class="phone-list-item">
+        <div class="phone-list-icon" style="background:#dbeafe;color:#2563eb">🎁</div>
+        <div class="phone-list-text"><strong>Canje: 2x1 en cafe</strong><small>Ayer</small></div>
+        <div class="phone-list-pts" style="color:#ef4444">-500 pts</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section section-gray" id="features">
+<div class="section-inner">
+  <div class="section-header">
+    <div class="section-badge section-badge-blue">✦ Features</div>
+    <h2>Todo lo que necesitas para <span>fidelizar</span></h2>
+    <p>Herramientas poderosas para negocios y una experiencia increíble para tus clientes.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#eff6ff">📍</div>
+      <h3>Geolocalización</h3>
+      <p>Encuentra tiendas cercanas automáticamente. Activa tu tarjeta cuando estes en el lugar.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#f0fdf4">⭐</div>
+      <h3>Puntos</h3>
+      <p>Acumula puntos por cada compra. Historial completo y transparente.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#fffbeb">🎁</div>
+      <h3>Recompensas</h3>
+      <p>Canjea tus puntos por premios reales. Descuentos, productos y mas.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#faf5ff">📊</div>
+      <h3>Dashboard</h3>
+      <p>Panel en tiempo real para negocios. Analiza comportamiento y fidelizacion.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#fff1f2">🔔</div>
+      <h3>Notificaciones</h3>
+      <p>Alertas inteligentes de ofertas cerca de ti. Nunca pierdas una recompensa.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon" style="background:#f8fafc">🔐</div>
+      <h3>Seguridad</h3>
+      <p>Tus datos protegidos con encriptación de grado bancario.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="negocio">
+<div class="section-inner">
+  <div class="biz-grid">
+    <div>
+      <div class="section-badge section-badge-blue">Para negocios</div>
+      <h2 style="font-size:36px;font-weight:800;letter-spacing:-.02em;color:#111827;line-height:1.15">Fideliza con <span style="color:#2563eb">datos</span>, no con suposiciones</h2>
+      <p style="font-size:16px;color:#6b7280;line-height:1.7;margin-top:20px">Plataforma integral que transforma visitas ocasionales en clientes leales. Análítica avanzada, automatización inteligente y resultados medibles.</p>
+      <div class="biz-list">
+        <div class="biz-item"><span class="biz-item-icon">📈</span><div><strong>Aumenta ventas</strong><small>Clientes retornan 3x mas con fidelizacion efectiva.</small></div></div>
+        <div class="biz-item"><span class="biz-item-icon">🧠</span><div><strong>Datos inteligentes</strong><small>Conoce preferencias y patrones de compra.</small></div></div>
+        <div class="biz-item"><span class="biz-item-icon">🎯</span><div><strong>Marketing preciso</strong><small>Segmentación para campañas que convierten.</small></div></div>
+        <div class="biz-item"><span class="biz-item-icon">💰</span><div><strong>Bajo costo</strong><small>Desde $19.900/mes. ROI comprobable.</small></div></div>
+      </div>
+      <a href="#precios" class="btn-primary-lg" style="margin-top:32px">Comenzar gratis <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></a>
+    </div>
+    <div class="dashboard">
+      <div class="dash-header">
+        <div><strong>Panel de Control</strong><br><small>Metricas en tiempo real</small></div>
+        <div class="dash-dots"><span style="background:#ef4444"></span><span style="background:#f59e0b"></span><span style="background:#22c55e"></span></div>
+      </div>
+      <div class="dash-stats">
+        <div class="dash-stat"><small>Clientes activos</small><strong>12.8K</strong><em>+18%</em></div>
+        <div class="dash-stat"><small>Canjes hoy</small><strong>342</strong><em>+24%</em></div>
+        <div class="dash-stat"><small>Tasa retorno</small><strong>73%</strong><em>+5%</em></div>
+      </div>
+      <div class="dash-chart">
+        <div class="dash-chart-header"><span>Puntos canjeados por mes</span><span>2025</span></div>
+        <div class="dash-bars" id="dashBars"></div>
+      </div>
+      <div class="dash-bottom">
+        <div class="dash-bottom-item"><span>☕</span><div><strong>Cafe gratis</strong><small>1,240 canjes</small></div></div>
+        <div class="dash-bottom-item"><span>🏪</span><div><strong>Cafe Central</strong><small>3,240 pts</small></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section section-gray" id="clientes">
+<div class="section-inner">
+  <div class="cli-grid">
+    <div class="cli-app">
+      <div class="phone-header">
+        <div class="phone-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+        </div>
+        <div><div class="phone-title">Mis Puntos</div><div class="phone-subtitle">Miembro #FK-2847</div></div>
+      </div>
+      <div class="phone-points">
+        <div class="phone-points-label"><span>Puntos disponibles</span></div>
+        <div class="phone-points-value">4,750</div>
+        <div style="font-size:12px;font-weight:600;color:#86efac;margin-top:4px">↑ 320 esta semana</div>
+        <div class="phone-points-bar"><div class="phone-points-fill"></div></div>
+      </div>
+      <div style="margin-bottom:16px">
+        <strong style="font-size:12px;color:#6b7280;display:block;margin-bottom:8px">Negocios cerca de ti</strong>
+        <div class="phone-list-item"><span style="font-size:18px">☕</span><div class="phone-list-text"><strong>Cafe Central</strong><small>120m</small></div><span style="font-size:11px;font-weight:700;color:#22c55e;background:#dcfce7;padding:2px 8px;border-radius:999px">+25 pts</span></div>
+        <div class="phone-list-item"><span style="font-size:18px">🛒</span><div class="phone-list-text"><strong>SuperMarket</strong><small>350m</small></div><span style="font-size:11px;font-weight:700;color:#22c55e;background:#dcfce7;padding:2px 8px;border-radius:999px">+50 pts</span></div>
+        <div class="phone-list-item"><span style="font-size:18px">🍽️</span><div class="phone-list-text"><strong>Resto Vegano</strong><small>500m</small></div><span style="font-size:11px;font-weight:700;color:#22c55e;background:#dcfce7;padding:2px 8px;border-radius:999px">+40 pts</span></div>
+      </div>
+      <strong style="font-size:12px;color:#6b7280;display:block;margin-bottom:8px">Canjea recompensas</strong>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div style="background:#f3f4f6;border:1px solid #e5e7eb;border-radius:12px;padding:12px"><span style="font-size:18px">☕</span><small style="font-size:10px;color:#9ca3af;display:block;margin-top:4px">Alimentos</small><strong style="font-size:12px;color:#111827;display:block;margin-top:2px">Cafe gratis</strong><span style="font-size:11px;font-weight:700;color:#2563eb;display:block;margin-top:4px">500 pts</span></div>
+        <div style="background:#f3f4f6;border:1px solid #e5e7eb;border-radius:12px;padding:12px"><span style="font-size:18px">🎬</span><small style="font-size:10px;color:#9ca3af;display:block;margin-top:4px">Entretenimiento</small><strong style="font-size:12px;color:#111827;display:block;margin-top:2px">2x1 en cine</strong><span style="font-size:11px;font-weight:700;color:#2563eb;display:block;margin-top:4px">800 pts</span></div>
+        <div style="background:#f3f4f6;border:1px solid #e5e7eb;border-radius:12px;padding:12px"><span style="font-size:18px">🛍️</span><small style="font-size:10px;color:#9ca3af;display:block;margin-top:4px">Ropa</small><strong style="font-size:12px;color:#111827;display:block;margin-top:2px">20% dto. tienda</strong><span style="font-size:11px;font-weight:700;color:#2563eb;display:block;margin-top:4px">350 pts</span></div>
+        <div style="background:#f3f4f6;border:1px solid #e5e7eb;border-radius:12px;padding:12px"><span style="font-size:18px">🍕</span><small style="font-size:10px;color:#9ca3af;display:block;margin-top:4px">Restaurantes</small><strong style="font-size:12px;color:#111827;display:block;margin-top:2px">Pizza gratis</strong><span style="font-size:11px;font-weight:700;color:#2563eb;display:block;margin-top:4px">1,200 pts</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="section-badge section-badge-cyan">Para clientes</div>
+      <h2 style="font-size:36px;font-weight:800;letter-spacing:-.02em;color:#111827;line-height:1.15">Tus compras, <span style="color:#2563eb">recompensas</span> reales</h2>
+      <p style="font-size:16px;color:#6b7280;line-height:1.7;margin-top:20px">Acumula puntos sin esfuerzo. Sin cupones, sin código QR. Solo vive tus experiencias y deja que la app haga el resto.</p>
+      <div class="cli-features">
+        <div class="cli-feature"><div class="cli-feature-icon">⚡</div><div><strong>Geolocalización automática</strong><small>Sin escanear nada. Se activa cuando llegas.</small></div></div>
+        <div class="cli-feature"><div class="cli-feature-icon">🎯</div><div><strong>Puntos en tiempo real</strong><small>Ves tu saldo actualizado al instante.</small></div></div>
+        <div class="cli-feature"><div class="cli-feature-icon">🏆</div><div><strong>Recompensas auténticas</strong><small>Descuentos y beneficios reales, no trivialidades.</small></div></div>
+        <div class="cli-feature"><div class="cli-feature-icon">📍</div><div><strong>Mapa interactivo</strong><small>Encuentra negocios cerca de ti con un tap.</small></div></div>
+      </div>
+      <div class="app-btns">
+        <div class="app-badge"><svg viewBox="0 0 24 24" fill="white"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg><div><small>Descargar en</small><strong>App Store</strong></div></div>
+        <div class="app-badge"><svg viewBox="0 0 24 24" fill="white"><path d="M3.609 1.814L13.792 12 3.61 22.186c-.37.35-.86.12-.86-.42V2.234c0-.54.49-.77.86-.42zM15.894 12.707l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302L17.091 12l2.302-2.492zM5.864 2.658L16.8 8.99l-2.302 2.302L5.864 2.658z"/></svg><div><small>Disponible en</small><strong>Google Play</strong></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section section-gray" id="precios">
+<div class="section-inner">
+  <div class="section-header">
+    <div class="section-badge section-badge-blue">Precios</div>
+    <h2>Planes que <span>escalan</span> contigo</h2>
+    <p>Empieza gratis por 14 días. Sin tarjeta de crédito.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <h3>Starter</h3>
+      <p class="pricing-desc">Para pequeños negocios que empiezan.</p>
+      <div class="pricing-amount"><span>$19.900</span><small>/mes</small></div>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Hasta 500 clientes</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Tarjeta digital</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Puntos y canjes</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Mapa de ubicación</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Soporte por email</li>
+      </ul>
+      <a href="/app/register" class="pricing-btn pricing-btn-dark" style="display:block;text-align:center;text-decoration:none">Comenzar gratis</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-label">Popular</div>
+      <h3>Professional</h3>
+      <p class="pricing-desc">Para negocios que quieren crecer.</p>
+      <div class="pricing-amount"><span>$39.900</span><small>/mes</small></div>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Hasta 5,000 clientes</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Dashboard avanzado</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Campañas automáticas</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Segmentación de clientes</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#93c5fd" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Soporte prioritario</li>
+      </ul>
+      <a href="/app/register" class="pricing-btn pricing-btn-white" style="display:block;text-align:center;text-decoration:none">Comenzar gratis</a>
+    </div>
+    <div class="pricing-card">
+      <h3>Enterprise</h3>
+      <p class="pricing-desc">Para grandes empresas y franquicias.</p>
+      <div class="pricing-amount"><span>Personalizado</span></div>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Clientes ilimitados</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>API personalizada</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Multi-sucursal</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Integración POS</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Gerente dedicado</li>
+      </ul>
+      <a href="mailto:contacto@cloudsolutions.cl" class="pricing-btn pricing-btn-dark" style="display:block;text-align:center;text-decoration:none">Contactar</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section section-gray" id="testimonios">
+<div class="section-inner">
+  <div class="section-header">
+    <div class="section-badge section-badge-amber">Testimonios</div>
+    <h2>Lo que dicen nuestros <span>clientes</span></h2>
+    <p>Negocios que ya transformaron su fidelización con Fideliza.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Desde que uso Fideliza, mis clientes retornan 3 veces más. El dashboard me permite entender sus hábitos de compra."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">MC</div>
+        <div><div class="testimonial-name">María Castillo</div><div class="testimonial-role">Dueña, Café Central</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"La geolocalización es genial. Mis clientes se activan solos cuando llegan. Sin escanear códigos, sin complicaciones."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">RP</div>
+        <div><div class="testimonial-name">Roberto Paredes</div><div class="testimonial-role">Gerente, SuperMarket Plus</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Implementamos Fideliza en 5 minutos. En el primer mes ya teníamos 200 clientes activos en el programa."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">AL</div>
+        <div><div class="testimonial-name">Ana López</div><div class="testimonial-role">Directora, Resto Vegano</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="faq">
+<div class="section-inner">
+  <div class="section-header">
+    <div class="section-badge section-badge-blue">FAQ</div>
+    <h2>Preguntas <span>frecuentes</span></h2>
+    <p>Resolvemos tus dudas sobre cómo funciona Fideliza.</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">¿Cómo funciona el programa de puntos? <span>+</span></button>
+      <div class="faq-answer" style="display:none">Tus clientes acumulan puntos automáticamente al visitar tu negocio. La geolocalización detecta cuando están en tu tienda y activa la acumulación. Pueden canjear puntos por recompensas que tú configuras.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">¿Necesito instalar algo? <span>+</span></button>
+      <div class="faq-answer" style="display:none">No. Fideliza funciona desde la nube. Tus clientes usan la app web desde su navegador. Tú accedes a tu dashboard desde cualquier dispositivo.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">¿Cuánto cuesta? <span>+</span></button>
+      <div class="faq-answer" style="display:none">El plan Starter cuesta $19.900/mes para hasta 500 clientes. El plan Professional es $39.900/mes para hasta 5,000 clientes. Ambos incluyen 14 días gratis.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">¿Puedo probar gratis? <span>+</span></button>
+      <div class="faq-answer" style="display:none">Sí. Todos los planes incluyen 14 días de prueba gratuita sin tarjeta de crédito. Puedes cancelar en cualquier momento.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">¿Mis clientes necesitan descargar una app? <span>+</span></button>
+      <div class="faq-answer" style="display:none">No. Tus clientes acceden desde el navegador de su celular. Sin descargas, sin actualizaciones. Funciona como una Progressive Web App (PWA).</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="cta-section section-blue">
+<h2>Empieza a fidelizar <span>hoy</span></h2>
+<p>14 días gratis. Sin tarjeta de crédito. Configuración en 5 minutos.</p>
+<div class="cta-btns">
+  <a href="/app/register" class="cta-btn-white" style="text-decoration:none">Soy negocio →</a>
+  <a href="/app/client/login" class="cta-btn-light" style="text-decoration:none">Soy cliente →</a>
+</div>
+</section>
+
+<footer class="footer">
+<div class="footer-inner">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:32px;height:32px;border-radius:8px;background:#2563eb;display:flex;align-items:center;justify-content:center">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+        </div>
+        <span style="font-weight:700;color:#fff">Fideliza</span>
+      </div>
+      <p>Programas de fidelidad que transforman visitas en clientes leales.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Producto</h4>
+      <a href="#features">Features</a><a href="#precios">Precios</a><a href="mailto:contacto@cloudsolutions.cl">API</a><a href="mailto:contacto@cloudsolutions.cl">Integraciones</a>
+    </div>
+    <div class="footer-col">
+      <h4>Empresa</h4>
+      <a href="https://cloudsolutions.cl" target="_blank">Sobre nosotros</a><a href="mailto:contacto@cloudsolutions.cl">Blog</a><a href="mailto:contacto@cloudsolutions.cl">Carreras</a><a href="mailto:contacto@cloudsolutions.cl">Contacto</a>
+    </div>
+    <div class="footer-col">
+      <h4>Soporte</h4>
+      <a href="mailto:soporte@cloudsolutions.cl">Ayuda</a><a href="mailto:soporte@cloudsolutions.cl">Documentación</a><a href="https://status.cloudsolutions.cl" target="_blank">Status</a><a href="mailto:soporte@cloudsolutions.cl">Comunidad</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Fideliza by CloudSolutions. Todos los derechos reservados.</span>
+    <div class="footer-bottom-links"><a href="mailto:legal@cloudsolutions.cl">Términos</a><a href="mailto:legal@cloudsolutions.cl">Privacidad</a><a href="mailto:legal@cloudsolutions.cl">Cookies</a></div>
+  </div>
+</div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40)});
+const bars=[65,45,80,55,90,70,85,60,95,75,88,62];
+const months=['E','F','M','A','M','J','J','A','S','O','N','D'];
+const container=document.getElementById('dashBars');
+bars.forEach((h,i)=>{
+  const wrap=document.createElement('div');
+  wrap.style.cssText='flex:1;display:flex;flex-direction:column;align-items:center';
+  const bar=document.createElement('div');
+  bar.style.cssText=`width:100%;border-radius:3px 3px 0 0;background:${i===8?'#2563eb':'#bfdbfe'};height:${h}%`;
+  const label=document.createElement('div');
+  label.className='dash-bar-label';
+  label.textContent=months[i];
+  wrap.appendChild(bar);
+  wrap.appendChild(label);
+  container.appendChild(wrap);
+});
+</script>
+</body>
+</html>

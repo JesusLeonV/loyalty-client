@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fideliza - Pago Exitoso</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0fdf4; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .container { max-width: 480px; width: 100%; text-align: center; }
+    .icon { width: 80px; height: 80px; background: #22c55e; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
+    .icon svg { width: 40px; height: 40px; color: white; }
+    h1 { font-size: 24px; color: #166534; margin-bottom: 8px; }
+    p { color: #15803d; font-size: 16px; margin-bottom: 24px; }
+    .details { background: white; border-radius: 12px; padding: 20px; margin-bottom: 24px; text-align: left; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    .detail-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
+    .detail-row:last-child { border-bottom: none; }
+    .detail-label { color: #64748b; font-size: 14px; }
+    .detail-value { color: #1e293b; font-weight: 600; font-size: 14px; }
+    .btn { display: block; width: 100%; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s; text-align: center; text-decoration: none; }
+    .btn-primary { background: #1e293b; color: white; }
+    .btn-primary:hover { background: #334155; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+    <h1>¡Pago exitoso!</h1>
+    <p>Tu plan ha sido activado correctamente.</p>
+
+    <div class="details">
+      <div class="detail-row">
+        <span class="detail-label">Estado</span>
+        <span class="detail-value" style="color:#22c55e">Aprobado</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Plan</span>
+        <span class="detail-value" id="plan-name">-</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">Monto</span>
+        <span class="detail-value" id="amount">-</span>
+      </div>
+    </div>
+
+    <a href="/app/" class="btn btn-primary">Ir al panel</a>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const paymentId = params.get('payment_id');
+    const status = params.get('status');
+
+    if (paymentId) {
+      document.getElementById('plan-name').textContent = 'Tu plan activo';
+      document.getElementById('amount').textContent = 'Procesado';
+    }
+
+    setTimeout(() => {
+      localStorage.removeItem('loyalty_selected_plan');
+    }, 1000);
+  </script>
+</body>
+</html>

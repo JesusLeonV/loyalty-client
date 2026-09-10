@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal de Negocios - Fideliza</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;color:#1f2937;background:#f9fafb;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{text-decoration:none;color:inherit}
+input,select,textarea{font-family:inherit}
+
+.top-header{background:#fff;border-bottom:1px solid #f3f4f6;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.header-inner{max-width:1120px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;color:#111827}
+.nav-logo-icon{width:36px;height:36px;border-radius:10px;background:#2563eb;display:flex;align-items:center;justify-content:center}
+.portal-tag{font-size:13px;font-weight:600;color:#2563eb;background:#eff6ff;border:1px solid #dbeafe;padding:6px 14px;border-radius:999px}
+.btn-outline{padding:8px 20px;font-size:14px;font-weight:600;color:#374151;border:1px solid #e5e7eb;border-radius:10px;background:#fff;cursor:pointer;transition:all .2s}
+.btn-outline:hover{border-color:#d1d5db;background:#f9fafb}
+.btn-primary{padding:12px 20px;font-size:14px;font-weight:600;color:#fff;background:#2563eb;border:none;border-radius:10px;cursor:pointer;transition:all .2s;width:100%}
+.btn-primary:hover{background:#1d4ed8}
+.btn-danger{padding:8px 16px;font-size:13px;font-weight:600;color:#dc2626;border:1px solid #fecaca;border-radius:10px;background:#fff;cursor:pointer;transition:all .2s}
+.btn-danger:hover{background:#fef2f2}
+
+.main{max-width:1120px;margin:0 auto;padding:48px 24px 80px}
+
+.auth-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;max-width:960px;margin:0 auto}
+.auth-card{background:#fff;border:1px solid #f3f4f6;border-radius:20px;padding:32px;box-shadow:0 20px 50px -12px rgba(0,0,0,.06)}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;background:#f3f4f6;border-radius:12px;padding:4px;margin-bottom:28px}
+.tab{padding:10px;border:none;background:transparent;border-radius:9px;font-size:14px;font-weight:600;color:#6b7280;cursor:pointer;transition:all .2s}
+.tab.active{background:#fff;color:#111827;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.auth-card h2{font-size:22px;font-weight:800;color:#111827;letter-spacing:-.01em}
+.auth-sub{font-size:14px;color:#6b7280;margin:6px 0 24px}
+label{display:block;font-size:13px;font-weight:600;color:#374151;margin-bottom:6px}
+.field{margin-bottom:16px}
+.input{width:100%;padding:12px 14px;font-size:14px;border:1.5px solid #e5e7eb;border-radius:10px;outline:none;transition:border .2s;background:#fff;color:#111827}
+.input:focus{border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+.error-msg{background:#fef2f2;border:1px solid #fecaca;color:#dc2626;font-size:13px;padding:10px 14px;border-radius:10px;margin-bottom:16px}
+.ok-msg{background:#f0fdf4;border:1px solid #bbf7d0;color:#16a34a;font-size:13px;padding:10px 14px;border-radius:10px;margin-bottom:16px}
+
+.auth-side{display:none}
+.auth-side h2{font-size:32px;font-weight:800;letter-spacing:-.02em;color:#111827;line-height:1.15}
+.auth-side h2 span{color:#2563eb}
+.auth-side p{font-size:15px;color:#6b7280;line-height:1.7;margin-top:14px}
+.side-list{margin-top:28px}
+.side-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
+.side-icon{width:40px;height:40px;border-radius:10px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.side-item strong{font-size:14px;color:#111827;display:block}
+.side-item small{font-size:13px;color:#6b7280;line-height:1.5}
+
+.dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:16px}
+.dash-top h1{font-size:28px;font-weight:800;color:#111827;letter-spacing:-.02em}
+.dash-top p{font-size:14px;color:#6b7280;margin-top:4px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+.stat{background:#fff;border:1px solid #f3f4f6;border-radius:16px;padding:20px}
+.stat small{font-size:12px;color:#9ca3af;display:block}
+.stat strong{font-size:26px;font-weight:800;color:#111827;display:block;margin-top:4px}
+.stat em{font-size:12px;font-weight:600;color:#22c55e;font-style:normal}
+.panel{background:#fff;border:1px solid #f3f4f6;border-radius:20px;padding:28px;margin-bottom:24px}
+.panel h2{font-size:18px;font-weight:700;color:#111827;margin-bottom:16px}
+.panel h3{font-size:15px;font-weight:700;color:#111827;margin:24px 0 12px}
+.card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.loyalty-card{border:1px solid #f3f4f6;border-radius:16px;padding:20px;color:#fff;position:relative;overflow:hidden;min-height:130px;display:flex;flex-direction:column;justify-content:space-between}
+.loyalty-card .lc-name{font-size:16px;font-weight:700}
+.loyalty-card .lc-biz{font-size:12px;opacity:.85}
+.loyalty-card .lc-footer{display:flex;justify-content:space-between;align-items:center;font-size:12px}
+.lc-badge{background:rgba(255,255,255,.2);padding:4px 10px;border-radius:999px;font-weight:600}
+.empty{color:#9ca3af;font-size:14px;padding:24px;text-align:center;background:#f9fafb;border:1px dashed #e5e7eb;border-radius:12px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.qr-img{width:80px;height:80px;border-radius:8px;background:#fff}
+
+@media(max-width:900px){.auth-wrap{grid-template-columns:1fr}.auth-side{display:block}.stats{grid-template-columns:1fr}.card-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="top-header">
+<div class="header-inner">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"/></svg>
+    </div>
+    Fideliza
+  </a>
+  <span class="portal-tag">Portal de Negocios</span>
+  <a href="/" class="btn-outline">Volver al inicio</a>
+</div>
+</header>
+
+<main class="main">
+
+<div id="authView">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button id="tabLogin" class="tab active" type="button">Iniciar sesión</button>
+        <button id="tabRegister" class="tab" type="button">Crear cuenta</button>
+      </div>
+
+      <form id="loginForm">
+        <h2>Bienvenido de vuelta</h2>
+        <p class="auth-sub">Accede al panel de tu negocio</p>
+        <div id="loginError" class="error-msg" hidden></div>
+        <div class="field"><label for="loginEmail">Email</label><input class="input" type="email" id="loginEmail" required placeholder="tu@negocio.cl"></div>
+        <div class="field"><label for="loginPassword">Contraseña</label><input class="input" type="password" id="loginPassword" required placeholder="••••••••"></div>
+        <button class="btn-primary" type="submit">Entrar al panel</button>
+      </form>
+
+      <form id="registerForm" hidden>
+        <h2>Crea tu cuenta gratis</h2>
+        <p class="auth-sub">Registra tu negocio y empieza a fidelizar</p>
+        <div id="regError" class="error-msg" hidden></div>
+        <div class="field"><label for="regName">Nombre del negocio</label><input class="input" type="text" id="regName" required placeholder="Mi Negocio Spa"></div>
+        <div class="field"><label for="regEmail">Email</label><input class="input" type="email" id="regEmail" required placeholder="tu@negocio.cl"></div>
+        <div class="form-row">
+          <div class="field"><label for="regPhone">Teléfono (opcional)</label><input class="input" type="tel" id="regPhone" placeholder="+56 9 ..."></div>
+          <div class="field"><label for="regPassword">Contraseña</label><input class="input" type="password" id="regPassword" required minlength="6" placeholder="••••••••"></div>
+        </div>
+        <button class="btn-primary" type="submit">Crear cuenta</button>
+      </form>
+    </div>
+
+    <div class="auth-side">
+      <h2>Panel para <span>negocios</span></h2>
+      <p>Crea tarjetas de fidelidad digitales, suma puntos a tus clientes y fideliza desde un solo lugar.</p>
+      <div class="side-list">
+        <div class="side-item"><div class="side-icon">💳</div><div><strong>Tarjetas digitales</strong><small>Crea tarjetas con tus colores y logo en segundos.</small></div></div>
+        <div class="side-item"><div class="side-icon">⭐</div><div><strong>Puntos automáticos</strong><small>Reglas de puntos por monto de compra configurables.</small></div></div>
+        <div class="side-item"><div class="side-icon">📊</div><div><strong>Métricas claras</strong><small>Conoce a tus clientes y su comportamiento.</small></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="dashView" hidden>
+  <div class="dash-top">
+    <div>
+      <h1 id="bizName">Mi negocio</h1>
+      <p id="bizEmail"></p>
+    </div>
+    <button id="logoutBtn" class="btn-danger" type="button">Cerrar sesión</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><small>Tarjetas de fidelidad</small><strong id="statCards">0</strong></div>
+    <div class="stat"><small>Estado</small><strong style="font-size:18px" id="statStatus">Activo</strong></div>
+    <div class="stat"><small>Plan</small><strong style="font-size:18px">Free</strong></div>
+  </div>
+
+  <div class="panel">
+    <h2>Mis tarjetas de fidelidad</h2>
+    <div id="cardsList" class="card-grid"></div>
+
+    <h3>Crear nueva tarjeta</h3>
+    <div id="cardMsg" hidden></div>
+    <form id="cardForm">
+      <div class="form-row">
+        <div class="field"><label for="cardName">Nombre de la tarjeta</label><input class="input" type="text" id="cardName" required placeholder="Tarjeta Café"></div>
+        <div class="field"><label for="cardPoints">Puntos por $1.000 gastado</label><input class="input" type="number" id="cardPoints" value="1" min="1"></div>
+      </div>
+      <div class="field"><label for="cardDesc">Descripción (opcional)</label><input class="input" type="text" id="cardDesc" placeholder="Acumula puntos en cada visita"></div>
+      <div class="form-row">
+        <div class="field"><label for="cardColor1">Color principal</label><input class="input" type="color" id="cardColor1" value="#2563eb" style="height:46px;padding:4px"></div>
+        <div class="field"><label for="cardColor2">Color de acento</label><input class="input" type="color" id="cardColor2" value="#f59e0b" style="height:46px;padding:4px"></div>
+      </div>
+      <button class="btn-primary" type="submit">Crear tarjeta</button>
+    </form>
+  </div>
+</div>
+
+</main>
+
+<script>
+const API='/api';
+const $=id=>document.getElementById(id);
+const token=()=>localStorage.getItem('fideliza_biz_token');
+
+function show(el,on){el.hidden=!on}
+function err(el,msg){el.textContent=msg;el.hidden=false}
+
+$('tabLogin').onclick=()=>{ $('tabLogin').classList.add('active');$('tabRegister').classList.remove('active');show($('loginForm'),true);show($('registerForm'),false) };
+$('tabRegister').onclick=()=>{ $('tabRegister').classList.add('active');$('tabLogin').classList.remove('active');show($('registerForm'),true);show($('loginForm'),false) };
+
+async function api(path,opts={}){
+  const h={'Content-Type':'application/json',...(opts.headers||{})};
+  const t=token(); if(t) h['Authorization']='Bearer '+t;
+  const r=await fetch(API+path,{...opts,headers:h});
+  const d=await r.json().catch(()=>({}));
+  if(!r.ok) throw new Error(d.error||'Error de servidor');
+  return d;
+}
+
+$('loginForm').onsubmit=async e=>{
+  e.preventDefault();
+  const b=$('loginError');b.hidden=true;
+  try{
+    const d=await api('/auth/login',{method:'POST',body:JSON.stringify({email:$('loginEmail').value,password:$('loginPassword').value})});
+    localStorage.setItem('fideliza_biz_token',d.token);
+    localStorage.setItem('fideliza_biz_user',JSON.stringify(d.user));
+    loadDash(d.user);
+  }catch(ex){err(b,ex.message)}
+};
+
+$('registerForm').onsubmit=async e=>{
+  e.preventDefault();
+  const b=$('regError');b.hidden=true;
+  try{
+    const d=await api('/auth/register',{method:'POST',body:JSON.stringify({email:$('regEmail').value,password:$('regPassword').value,business_name:$('regName').value,phone:$('regPhone').value})});
+    localStorage.setItem('fideliza_biz_token',d.token);
+    localStorage.setItem('fideliza_biz_user',JSON.stringify(d.user));
+    loadDash(d.user);
+  }catch(ex){err(b,ex.message)}
+};
+
+$('logoutBtn').onclick=()=>{ localStorage.removeItem('fideliza_biz_token');localStorage.removeItem('fideliza_biz_user');location.reload() };
+
+async function loadCards(){
+  const list=$('cardsList');
+  try{
+    const d=await api('/cards');
+    const cards=d.cards||[];
+    $('statCards').textContent=cards.length;
+    if(!cards.length){list.innerHTML='<div class="empty" style="grid-column:1/-1">Aún no tienes tarjetas. Crea la primera abajo.</div>';return}
+    list.innerHTML=cards.map(c=>`
+      <div class="loyalty-card" style="background:linear-gradient(135deg,${c.primary_color||'#2563eb'},${c.secondary_color||'#1e40af'})">
+        <div><div class="lc-name">${esc(c.name)}</div><div class="lc-biz">${esc(c.description||'Tarjeta de fidelidad')}</div></div>
+        <div class="lc-footer"><span class="lc-badge">${c.points_per_currency||1} pt / $1.000</span><span>${c.is_active?'Activa':'Inactiva'}</span></div>
+      </div>`).join('');
+  }catch(ex){list.innerHTML='<div class="empty" style="grid-column:1/-1">'+esc(ex.message)+'</div>'}
+}
+
+$('cardForm').onsubmit=async e=>{
+  e.preventDefault();
+  const m=$('cardMsg');m.hidden=true;
+  try{
+    await api('/cards',{method:'POST',body:JSON.stringify({
+      name:$('cardName').value,
+      description:$('cardDesc').value||null,
+      points_per_currency:parseInt($('cardPoints').value)||1,
+      primary_color:$('cardColor1').value,
+      accent_color:$('cardColor2').value
+    })});
+    m.className='ok-msg';m.textContent='Tarjeta creada exitosamente';m.hidden=false;
+    $('cardForm').reset();$('cardPoints').value=1;
+    loadCards();
+  }catch(ex){m.className='error-msg';m.textContent=ex.message;m.hidden=false}
+};
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+async function loadDash(user){
+  show($('authView'),false);show($('dashView'),true);
+  $('bizName').textContent=user.business_name||'Mi negocio';
+  $('bizEmail').textContent=user.email||'';
+  loadCards();
+}
+
+(async()=>{
+  if(token()){
+    try{
+      const d=await api('/auth/business/profile');
+      const u=localStorage.getItem('fideliza_biz_user');
+      let user=u?JSON.parse(u):{};
+      if(d.profile) user={...user,...d.profile};
+      loadDash(user);
+    }catch{ localStorage.removeItem('fideliza_biz_token');localStorage.removeItem('fideliza_biz_user') }
+  }
+})();
+</script>
+</body>
+</html>
